@@ -90,6 +90,7 @@ func main() {
 		Auth: []ssh.AuthMethod{
 			ssh.Password(*pass),
 		},
+		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
 
 	localEndpoint := &Endpoint{
@@ -113,5 +114,6 @@ func main() {
 		Server: serverEndpoint,
 		Remote: remoteEndpoint,
 	}
-	go tunnel.Start()
+
+	tunnel.Start()
 }
